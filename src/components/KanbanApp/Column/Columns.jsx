@@ -5,6 +5,7 @@ import {
 	addTask,
 	removeTask,
 	editColumnTitle,
+	editTaskTitle,
 } from '../../../store/kanbanSlice'
 import { BiEdit, BiTime } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
@@ -38,6 +39,12 @@ export const Columns = ({ kanban }) => {
 	const confirmNewColumnTitle = (id, newTitle) => {
 		if (newTitle.length > 0) {
 			dispatch(editColumnTitle({ id, newTitle }))
+		}
+	}
+
+	const confirmNewTaskTitle = (kanbanID, taskID, newTitle) => {
+		if (newTitle.length > 0) {
+			dispatch(editTaskTitle({ kanbanID, taskID, newTitle }))
 		}
 	}
 
@@ -87,33 +94,14 @@ export const Columns = ({ kanban }) => {
 								className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3 mb-4'
 							>
 								<div className='flex justify-between border-b-[1px] border-b-white border-opacity-40 pb-2'>
-									{taskEditing ? (
-										<div>
-											<input
-												value={editedTaskText}
-												onChange={(e) => setEditedTaskText(e.target.value)}
-												className='rounded-lg outline-none text-black dark:bg-[#202123] dark:text-white py-2 px-2 w-[150px] font-semibold mr-3'
-												autoFocus
-											></input>
-											<button
-												onClick={() => {
-													setTaskEditing(false)
-												}}
-												className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
-											>
-												Confirm
-											</button>
-										</div>
-									) : (
-										<div>
-											<button
-												onClick={() => setTaskEditing(true)}
-												className='font-bold text-lg overflow-hidden max-w-[230px]'
-											>
-												{task.taskText}
-											</button>
-										</div>
-									)}
+									<div>
+										<button
+											onClick={() => setTaskEditing(true)}
+											className='font-bold text-lg overflow-hidden max-w-[230px]'
+										>
+											{task.taskText}
+										</button>
+									</div>
 									<button
 										onClick={() => deleteTask(kanban.id, task.taskID)}
 										className='px-2 rounded-lg outline-none'

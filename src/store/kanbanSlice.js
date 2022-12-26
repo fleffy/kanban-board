@@ -94,7 +94,15 @@ export const kanbanSlice = createSlice({
 			window.localStorage.setItem('localKanban', JSON.stringify(kanbanDataArr))
 			state.kanbanData = kanbanDataArr
 		},
-		editTaskTitle(state, action) {},
+		editTaskTitle(state, action) {
+			const kanbanData = window.localStorage.getItem('localKanban')
+			const kanbanDataArr = JSON.parse(kanbanData)
+
+			kanbanDataArr.forEach((kanban) => {
+				if (kanban.id === action.payload.kanbanID) {
+				}
+			})
+		},
 	},
 })
 
