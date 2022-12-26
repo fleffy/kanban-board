@@ -81,20 +81,20 @@ export const kanbanSlice = createSlice({
 			window.localStorage.setItem('localKanban', JSON.stringify(kanbanDataArr))
 			state.kanbanData = kanbanDataArr
 		},
-		// editColumnTitle(state, action) {
-		// 	const kanbanData = window.localStorage.getItem('localKanban')
-		// 	const kanbanDataArr = JSON.parse(kanbanData)
+		editColumnTitle(state, action) {
+			const kanbanData = window.localStorage.getItem('localKanban')
+			const kanbanDataArr = JSON.parse(kanbanData)
+			console.log(action.payload)
 
-		// 	// kanbanDataArr.forEach((kanban) => {
-		// 	// 	if (kanban.id === action.payload) {
-		// 	// 		console.log(kanban.id)
-		// 	// 	}
-		// 	// })
-		// 	// console.log(action.payload)
+			kanbanDataArr.forEach((kanban) => {
+				if (kanban.id === action.payload.id) {
+					kanban.title = action.payload.newTitle
+				}
+			})
 
-		// 	window.localStorage.setItem('localKanban', JSON.stringify(kanbanDataArr))
-		// 	state.kanbanData = kanbanDataArr
-		// },
+			window.localStorage.setItem('localKanban', JSON.stringify(kanbanDataArr))
+			state.kanbanData = kanbanDataArr
+		},
 		editTaskTitle(state, action) {},
 	},
 })

@@ -13,6 +13,7 @@ export const Columns = ({ kanban }) => {
 	const dispatch = useDispatch()
 
 	const [titleEditing, setTitleEditing] = useState(false)
+	const [editedColumnTitle, setEditedColumnTitle] = useState(kanban.title)
 
 	const deleteColumn = (id) => {
 		dispatch(removeColumn(id))
@@ -31,8 +32,10 @@ export const Columns = ({ kanban }) => {
 		dispatch(removeTask({ kanbanID, taskID }))
 	}
 
-	const confirmNewColumnTitle = (kanbanID) => {
-		dispatch(editColumnTitle(kanbanID))
+	const confirmNewColumnTitle = (id, newTitle) => {
+		if (newTitle.length > 0) {
+			dispatch(editColumnTitle({ id, newTitle }))
+		}
 	}
 
 	return (
@@ -43,11 +46,16 @@ export const Columns = ({ kanban }) => {
 						{titleEditing ? (
 							<div>
 								<input
+									value={editedColumnTitle}
+									onChange={(e) => setEditedColumnTitle(e.target.value)}
 									className='rounded-lg outline-none text-black dark:bg-[#2a2c2d] dark:text-white py-2 px-2 w-[150px] font-semibold mr-3'
 									autoFocus
 								></input>
 								<button
-									onClick={() => confirmNewColumnTitle(kanban.id)}
+									onClick={() => {
+										confirmNewColumnTitle(kanban.id, editedColumnTitle),
+											setTitleEditing(false)
+									}}
 									className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
 								>
 									Confirm
