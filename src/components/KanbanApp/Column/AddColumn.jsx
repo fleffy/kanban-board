@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { addColumn } from '../../../store/kanbanSlice'
+import { v4 as uuidv4 } from 'uuid'
 
 export const AddColumn = () => {
 	const dispatch = useDispatch()
@@ -7,13 +8,13 @@ export const AddColumn = () => {
 	const createNewColumn = () => {
 		dispatch(
 			addColumn({
-				id: crypto.randomUUID(),
+				id: uuidv4(),
 				title: 'Column',
 				tasks: [
 					{
 						taskText: 'taskText',
 						taskTime: new Date().toLocaleString(),
-						taskID: crypto.randomUUID(),
+						taskID: uuidv4,
 					},
 				],
 			})
