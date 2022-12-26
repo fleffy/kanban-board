@@ -70,9 +70,6 @@ export const kanbanSlice = createSlice({
 
 			kanbanDataArr.forEach((kanban) => {
 				if (kanban.id === action.payload.kanbanID) {
-					kanban.tasks.map((task) => {
-						kanban.tasks.splice(task, task)
-					})
 				}
 			})
 
