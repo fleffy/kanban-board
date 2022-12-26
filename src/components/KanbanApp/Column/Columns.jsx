@@ -1,5 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { removeColumn, addTask, removeTask } from '../../../store/kanbanSlice'
+import { v4 as uuidv4 } from 'uuid'
+import { BiEdit } from 'react-icons/bi'
 
 export const Columns = ({ kanban }) => {
 	const dispatch = useDispatch()
@@ -12,7 +14,7 @@ export const Columns = ({ kanban }) => {
 		const newTask = {
 			taskText: newTaskText,
 			taskTime: new Date().toLocaleString(),
-			taskID: crypto.randomUUID(),
+			taskID: uuidv4(),
 		}
 		dispatch(addTask({ id, newTask }))
 	}
@@ -26,7 +28,10 @@ export const Columns = ({ kanban }) => {
 			<div>
 				<div className='flex flex-col gap-5 text-white bg-indigo-300 dark:bg-[#202123] rounded-lg w-[350px] p-6'>
 					<div className='rounded-lg p-2 flex items-center justify-between'>
-						<h3 className='font-semibold text-xl'>{kanban.title}</h3>
+						<button className='flex items-center hover:opacity-80 transition-all'>
+							<h3 className='font-semibold text-xl'>{kanban.title}</h3>
+							<BiEdit className='ml-2 mt-1 w-[20px] h-[20px]' />
+						</button>
 						<button
 							onClick={() => deleteColumn(kanban.id)}
 							className='bg-indigo-400 dark:bg-indigo-700 py-2 px-4 rounded-lg outline-none dark:opacity-40 dark:hover:opacity-100 transition'
@@ -37,7 +42,7 @@ export const Columns = ({ kanban }) => {
 					<div>
 						{kanban.tasks.map((task) => (
 							<div
-								key={crypto.randomUUID()}
+								key={uuidv4()}
 								className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3 mb-4'
 							>
 								<div className='flex justify-between border-b-2 pb-2'>
