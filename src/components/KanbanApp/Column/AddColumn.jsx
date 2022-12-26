@@ -14,7 +14,7 @@ export const AddColumn = () => {
 					{
 						taskText: 'taskText',
 						taskTime: new Date().toLocaleString(),
-						taskID: uuidv4,
+						taskID: uuidv4(),
 					},
 				],
 			})

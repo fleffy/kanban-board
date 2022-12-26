@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { removeColumn, addTask, removeTask } from '../../../store/kanbanSlice'
+import {
+	removeColumn,
+	addTask,
+	removeTask,
+	editColumnTitle,
+} from '../../../store/kanbanSlice'
 import { BiEdit, BiTime } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -26,6 +31,10 @@ export const Columns = ({ kanban }) => {
 		dispatch(removeTask({ kanbanID, taskID }))
 	}
 
+	const confirmNewColumnTitle = (kanbanID) => {
+		dispatch(editColumnTitle(kanbanID))
+	}
+
 	return (
 		<div className='mt-[60px]'>
 			<div>
@@ -33,9 +42,12 @@ export const Columns = ({ kanban }) => {
 					<div className='rounded-lg p-2 flex items-center justify-between'>
 						{titleEditing ? (
 							<div>
-								<input className='rounded-lg outline-none text-black p-1 px-2 w-[150px] font-semibold mr-3'></input>
+								<input
+									className='rounded-lg outline-none text-black dark:bg-[#2a2c2d] dark:text-white py-2 px-2 w-[150px] font-semibold mr-3'
+									autoFocus
+								></input>
 								<button
-									onClick={() => setTitleEditing(false)}
+									onClick={() => confirmNewColumnTitle(kanban.id)}
 									className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
 								>
 									Confirm
@@ -60,7 +72,7 @@ export const Columns = ({ kanban }) => {
 					<div>
 						{kanban.tasks.map((task) => (
 							<div
-								key={uuidv4()}
+								key={`keyID-${task.taskID}`}
 								className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3 mb-4'
 							>
 								<div className='flex justify-between border-b-[1px] border-b-white border-opacity-40 pb-2'>
