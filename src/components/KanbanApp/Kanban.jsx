@@ -1,10 +1,13 @@
 import { AddColumn } from './Column/AddColumn'
 import { Columns } from './Column/Columns'
+import { DragDropContext } from 'react-beautiful-dnd'
 
 import { useSelector } from 'react-redux'
 
 export const Kanban = () => {
 	const kanbanData = useSelector((state) => state.kanban.kanbanData)
+
+	const onDragEnd = () => {}
 
 	return (
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>

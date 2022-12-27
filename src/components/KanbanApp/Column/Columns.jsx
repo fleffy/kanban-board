@@ -3,13 +3,12 @@ import { useDispatch } from 'react-redux'
 import {
 	removeColumn,
 	addTask,
-	removeTask,
 	editColumnTitle,
-	editTaskTitle,
 } from '../../../store/kanbanSlice'
 import { Tasks } from './Tasks'
+import { Droppable } from 'react-beautiful-dnd'
 
-import { BiEdit, BiTime } from 'react-icons/bi'
+import { BiEdit } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
 
 export const Columns = ({ kanban }) => {
@@ -38,14 +37,8 @@ export const Columns = ({ kanban }) => {
 		}
 	}
 
-	const confirmNewTaskTitle = (kanbanID, taskID, newTitle) => {
-		if (newTitle.length > 0) {
-			dispatch(editTaskTitle({ kanbanID, taskID, newTitle }))
-		}
-	}
-
 	return (
-		<div className='mt-[60px]'>
+		<div>
 			<div>
 				<div className='flex flex-col gap-5 text-white bg-indigo-300 dark:bg-[#202123] rounded-lg w-[350px] p-6'>
 					<div className='rounded-lg p-2 flex items-center justify-between'>

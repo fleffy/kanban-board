@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { BiTime } from 'react-icons/bi'
 import { removeTask, editTaskTitle } from '../../../store/kanbanSlice'
+import { Draggable } from 'react-beautiful-dnd'
 
-export const Tasks = ({ kanban, task }) => {
+export const Tasks = ({ kanban, task, index }) => {
 	const dispatch = useDispatch()
 
 	const [taskEditing, setTaskEditing] = useState(false)
@@ -14,12 +15,14 @@ export const Tasks = ({ kanban, task }) => {
 	}
 
 	const confirmEditTask = (kanbanID, taskID, editedTaskText) => {
-		dispatch(editTaskTitle({ kanbanID, taskID, editedTaskText }))
+		if (editedTaskText.length > 0) {
+			dispatch(editTaskTitle({ kanbanID, taskID, editedTaskText }))
+		}
 	}
 
 	return (
 		<div
-			key={`keyID-${task.taskID}`}
+			key={task.taskID}
 			className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3 mb-4'
 		>
 			<div className='flex justify-between border-b-[1px] border-b-white border-opacity-40 pb-2'>
