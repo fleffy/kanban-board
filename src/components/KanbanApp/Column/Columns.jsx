@@ -89,7 +89,7 @@ export const Columns = ({ kanban }) => {
 						))}
 					</div>
 					<button
-						onClick={() => addNewTask(kanban.id, 'taskText')}
+						onClick={() => addNewTask(kanban.id, 'Task Text')}
 						className='bg-indigo-400 dark:bg-indigo-700 rounded-lg p-2 opacity-50 hover:opacity-100 transition-all'
 					>
 						Add

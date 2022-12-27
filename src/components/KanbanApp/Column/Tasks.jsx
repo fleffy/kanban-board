@@ -37,7 +37,7 @@ export const Tasks = ({ kanban, task }) => {
 									confirmEditTask(kanban.id, task.taskID, editedTaskText)
 									setTaskEditing(false)
 								}}
-								className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
+								className='rounded-lg bg-indigo-300 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
 							>
 								Confirm
 							</button>

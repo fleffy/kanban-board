@@ -9,10 +9,10 @@ export const AddColumn = () => {
 		dispatch(
 			addColumn({
 				id: uuidv4(),
-				title: 'Column',
+				title: 'Column Title',
 				tasks: [
 					{
-						taskText: 'taskText',
+						taskText: 'Task Text',
 						taskTime: new Date().toLocaleString(),
 						taskID: uuidv4(),
 					},
