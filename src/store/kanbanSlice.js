@@ -100,8 +100,16 @@ export const kanbanSlice = createSlice({
 
 			kanbanDataArr.forEach((kanban) => {
 				if (kanban.id === action.payload.kanbanID) {
+					kanban.tasks.map((task) => {
+						if (task.taskID === action.payload.taskID) {
+							task.taskText = action.payload.editedTaskText
+						}
+					})
 				}
 			})
+
+			window.localStorage.setItem('localKanban', JSON.stringify(kanbanDataArr))
+			state.kanbanData = kanbanDataArr
 		},
 	},
 })

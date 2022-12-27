@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { BiTime } from 'react-icons/bi'
 import { removeTask, editTaskTitle } from '../../../store/kanbanSlice'
@@ -5,8 +6,15 @@ import { removeTask, editTaskTitle } from '../../../store/kanbanSlice'
 export const Tasks = ({ kanban, task }) => {
 	const dispatch = useDispatch()
 
+	const [taskEditing, setTaskEditing] = useState(false)
+	const [editedTaskText, setEditedTaskText] = useState(task.taskText)
+
 	const deleteTask = (kanbanID, taskID) => {
 		dispatch(removeTask({ kanbanID, taskID }))
+	}
+
+	const confirmEditTask = (kanbanID, taskID, editedTaskText) => {
+		dispatch(editTaskTitle({ kanbanID, taskID, editedTaskText }))
 	}
 
 	return (
@@ -16,12 +24,32 @@ export const Tasks = ({ kanban, task }) => {
 		>
 			<div className='flex justify-between border-b-[1px] border-b-white border-opacity-40 pb-2'>
 				<div>
-					<button
-						onClick={() => setTaskEditing(true)}
-						className='font-bold text-lg overflow-hidden max-w-[230px]'
-					>
-						{task.taskText}
-					</button>
+					{taskEditing ? (
+						<div>
+							<input
+								value={editedTaskText}
+								onChange={(e) => setEditedTaskText(e.target.value)}
+								className='rounded-lg outline-none text-black dark:bg-[#202123] dark:text-white py-2 px-2 w-[150px] font-semibold mr-3'
+								autoFocus
+							></input>
+							<button
+								onClick={() => {
+									confirmEditTask(kanban.id, task.taskID, editedTaskText)
+									setTaskEditing(false)
+								}}
+								className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
+							>
+								Confirm
+							</button>
+						</div>
+					) : (
+						<button
+							onClick={() => setTaskEditing(true)}
+							className='font-bold text-lg overflow-hidden max-w-[230px] outline-none'
+						>
+							{task.taskText}
+						</button>
+					)}
 				</div>
 				<button
 					onClick={() => deleteTask(kanban.id, task.taskID)}

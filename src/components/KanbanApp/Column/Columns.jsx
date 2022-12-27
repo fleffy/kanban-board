@@ -16,10 +16,8 @@ export const Columns = ({ kanban }) => {
 	const dispatch = useDispatch()
 
 	const [titleEditing, setTitleEditing] = useState(false)
-	const [taskEditing, setTaskEditing] = useState(false)
 
 	const [editedColumnTitle, setEditedColumnTitle] = useState(kanban.title)
-	const [editedTaskText, setEditedTaskText] = useState('')
 
 	const deleteColumn = (id) => {
 		dispatch(removeColumn(id))
