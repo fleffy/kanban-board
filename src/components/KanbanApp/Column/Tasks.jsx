@@ -20,10 +20,7 @@ export const Tasks = ({ kanban, task }) => {
 	}
 
 	return (
-		<div
-			key={task.taskID}
-			className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3 mb-4'
-		>
+		<div className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3 mb-4'>
 			<div className='flex justify-between border-b-[1px] border-b-white border-opacity-40 pb-2'>
 				<div>
 					{taskEditing ? (
