@@ -15,11 +15,11 @@ export const Kanban = () => {
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>
 			<DragDropContext onDragEnd={() => onDragEnd()}>
 				<AddColumn />
-				<div className='flex gap-3 overflow-auto pb-3'>
-					{kanbanData.map((kanban) => (
-						<Columns key={kanban.id} kanban={kanban} />
-					))}
-				</div>
+			<div className='flex gap-3 overflow-auto pb-3 items-start'>
+				{kanbanData.map((kanban) => (
+					<Columns key={kanban.id} kanban={kanban} />
+				))}
+			</div>
 			</DragDropContext>
 		</div>
 	)
