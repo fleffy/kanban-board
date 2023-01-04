@@ -9,7 +9,7 @@ import { Tasks } from './Tasks'
 
 import { BiEdit } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
-import { Droppable } from 'react-beautiful-dnd'
+import { StrictModeDroppable } from './StrictModeDroppable'
 
 export const Columns = ({ kanban }) => {
 	const dispatch = useDispatch()
@@ -80,7 +80,7 @@ export const Columns = ({ kanban }) => {
 					X
 				</button>
 			</div>
-			<Droppable droppableId={kanban.id}>
+			<StrictModeDroppable droppableId={kanban.id}>
 				{(provided) => (
 					<div
 						{...provided.droppableProps}
@@ -98,7 +98,7 @@ export const Columns = ({ kanban }) => {
 						{provided.placeholder}
 					</div>
 				)}
-			</Droppable>
+			</StrictModeDroppable>
 			<button
 				onClick={() => addNewTask(kanban.id, 'Task Text')}
 				className='bg-indigo-400 dark:bg-indigo-700 rounded-lg p-2 opacity-50 hover:opacity-100 transition-all'
