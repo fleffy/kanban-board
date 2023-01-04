@@ -1,10 +1,8 @@
 import { AddColumn } from './Column/AddColumn'
 import { Columns } from './Column/Columns'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { DragDropContext } from 'react-beautiful-dnd'
 
 import { useSelector } from 'react-redux'
-
-import { v4 as uuidv4 } from 'uuid'
 
 export const Kanban = () => {
 	const kanbanData = useSelector((state) => state.kanban.kanbanData)
