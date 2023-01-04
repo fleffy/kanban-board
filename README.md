@@ -1,4 +1,4 @@
-# ⚠️STILL UNDER DEVELOPMENT, NOT FINAL VERSION⚠️
+# ⚠️ Not final version / under development ⚠️
 
 # kanban-board
 
