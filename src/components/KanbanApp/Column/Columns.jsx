@@ -11,7 +11,7 @@ import { BiEdit } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
 import { Droppable } from 'react-beautiful-dnd'
 
-export const Columns = ({ kanban, index }) => {
+export const Columns = ({ kanban }) => {
 	const dispatch = useDispatch()
 
 	const [titleEditing, setTitleEditing] = useState(false)
