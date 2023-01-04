@@ -2,12 +2,18 @@ import { AddColumn } from './Column/AddColumn'
 import { Columns } from './Column/Columns'
 import { DragDropContext } from '@hello-pangea/dnd'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 export const Kanban = () => {
 	const kanbanData = useSelector((state) => state.kanban.kanbanData)
 
-	const onDragEnd = () => {
+	const dispatch = useDispatch()
+
+	const setKanbanData = (state) => {
+		dispatch(setKanban(state))
+	}
+
+	const onDragEnd = (result) => {
 		// TODO
 	}
 

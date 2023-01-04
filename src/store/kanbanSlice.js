@@ -17,6 +17,9 @@ export const kanbanSlice = createSlice({
 	name: 'kanban',
 	initialState,
 	reducers: {
+		setKanban(state, action) {
+			return (state = { ...state, ...action.payload })
+		},
 		addColumn(state, action) {
 			state.kanbanData.push(action.payload)
 
@@ -115,6 +118,7 @@ export const kanbanSlice = createSlice({
 })
 
 export const {
+	setKanban,
 	addColumn,
 	removeColumn,
 	addTask,
