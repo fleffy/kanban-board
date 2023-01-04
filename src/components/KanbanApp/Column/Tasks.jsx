@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { BiTime } from 'react-icons/bi'
 import { removeTask, editTaskTitle } from '../../../store/kanbanSlice'
-import { Draggable } from 'react-beautiful-dnd'
+import { Draggable } from '@hello-pangea/dnd'
 
 export const Tasks = ({ kanban, task, index }) => {
 	const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export const Tasks = ({ kanban, task, index }) => {
 					ref={provided.innerRef}
 					{...provided.dragHandleProps}
 					{...provided.draggableProps}
-					className='pb-3'
+					className='pb-3 cursor-grab'
 				>
 					<div className='bg-indigo-400 dark:bg-[#2a2c2d] rounded-lg p-4 flex flex-col gap-3'>
 						<div className='flex justify-between border-b-[1px] border-b-white border-opacity-40 pb-2'>

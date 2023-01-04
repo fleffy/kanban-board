@@ -1,6 +1,6 @@
 import { AddColumn } from './Column/AddColumn'
 import { Columns } from './Column/Columns'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { DragDropContext } from '@hello-pangea/dnd'
 
 import { useSelector } from 'react-redux'
 
