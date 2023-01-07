@@ -9,9 +9,8 @@ import { Tasks } from './Tasks'
 
 import { BiEdit } from 'react-icons/bi'
 import { v4 as uuidv4 } from 'uuid'
-import { Droppable } from '@hello-pangea/dnd'
 
-export const Columns = ({ kanban }) => {
+export const Columns = ({ kanban, index }) => {
 	const dispatch = useDispatch()
 
 	const [titleEditing, setTitleEditing] = useState(false)
@@ -80,25 +79,12 @@ export const Columns = ({ kanban }) => {
 					X
 				</button>
 			</div>
-			<Droppable droppableId={kanban.id}>
-				{(provided) => (
-					<div
-						{...provided.droppableProps}
-						ref={provided.innerRef}
-						className='min-h-[110px] transition-all'
-					>
-						{kanban.tasks.map((task, index) => (
-							<Tasks
-								key={task.taskID}
-								kanban={kanban}
-								task={task}
-								index={index}
-							/>
-						))}
-						{provided.placeholder}
-					</div>
-				)}
-			</Droppable>
+
+			<div className='min-h-[110px] transition-all'>
+				{kanban.tasks.map((task, index) => (
+					<Tasks key={task.taskID} kanban={kanban} task={task} index={index} />
+				))}
+			</div>
 			<button
 				onClick={() => addNewTask(kanban.id, 'Task Text')}
 				className='bg-indigo-400 dark:bg-indigo-700 rounded-lg p-2 opacity-50 hover:opacity-100 transition-all'
