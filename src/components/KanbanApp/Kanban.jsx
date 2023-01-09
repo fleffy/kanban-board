@@ -4,7 +4,7 @@ import { Columns } from './Column/Columns'
 import { setKanban } from '../../store/kanbanSlice'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { DragDropContext } from '@hello-pangea/dnd'
+import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 
 export const Kanban = () => {
 	const kanbanData = useSelector((state) => state.kanbanApp)
@@ -15,7 +15,7 @@ export const Kanban = () => {
 	}
 
 	const onDragEnd = (result) => {
-		const { destination, source, draggableId } = result
+		const { destination, source, draggableId, type } = result
 
 		if (!destination) {
 			return
@@ -25,6 +25,20 @@ export const Kanban = () => {
 			destination.droppableId === source.droppableId &&
 			destination.index === source.index
 		) {
+			return
+		}
+
+		if (type === 'column') {
+			const newColumnOrder = Array.from(kanbanData.columnsOrder)
+			newColumnOrder.splice(source.index, 1)
+			newColumnOrder.splice(destination.index, 0, draggableId)
+
+			const newState = {
+				...kanbanData,
+				columnsOrder: newColumnOrder,
+			}
+
+			setInitialData(newState)
 			return
 		}
 
@@ -86,15 +100,34 @@ export const Kanban = () => {
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>
 			<AddColumn />
 			<DragDropContext onDragEnd={onDragEnd}>
-				<div className='flex overflow-auto gap-5 pb-3 items-start'>
-					{kanbanData.columnsOrder.map((columnId) => {
-						const column = kanbanData.columns[columnId]
-						const tasks = column.tasksOrder.map(
-							(taskId) => kanbanData.tasks[taskId]
-						)
-						return <Columns key={column.id} column={column} tasks={tasks} />
-					})}
-				</div>
+				<Droppable
+					droppableId='ColumnsDndArea'
+					direction='horizontal'
+					type='column'
+				>
+					{(provided) => (
+						<div
+							{...provided.droppableProps}
+							ref={provided.innerRef}
+							className='flex overflow-auto pb-3 items-start'
+						>
+							{kanbanData.columnsOrder.map((columnId, index) => {
+								const column = kanbanData.columns[columnId]
+								const tasks = column.tasksOrder.map(
+									(taskId) => kanbanData.tasks[taskId]
+								)
+								return (
+									<Columns
+										key={column.id}
+										column={column}
+										tasks={tasks}
+										index={index}
+									/>
+								)
+							})}
+						</div>
+					)}
+				</Droppable>
 			</DragDropContext>
 		</div>
 	)
