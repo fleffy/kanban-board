@@ -4,7 +4,7 @@ import { Columns } from './Column/Columns'
 import { useSelector } from 'react-redux'
 
 export const Kanban = () => {
-	const kanbanData = useSelector((state) => state.kanban)
+	const kanbanData = useSelector((state) => state.kanbanApp)
 
 	return (
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>

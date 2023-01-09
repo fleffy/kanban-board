@@ -2,30 +2,11 @@ import { createSlice } from '@reduxjs/toolkit'
 import { v4 as uuidv4 } from 'uuid'
 
 const initialState = {
-	tasks: {
-		'task-1': { id: 'task-1', content: 'Do something', time: 'Date1' },
-		'task-2': { id: 'task-2', content: 'Chill', time: 'Date2' },
-	},
+	tasks: {},
 
-	columns: {
-		'column-1': {
-			id: 'column-1',
-			title: 'Todo',
-			tasksOrder: ['task-1', 'task-2'],
-		},
-		'column-2': {
-			id: 'column-2',
-			title: 'In process',
-			tasksOrder: ['task-1', 'task-2'],
-		},
-		'column-3': {
-			id: 'column-3',
-			title: 'Done',
-			tasksOrder: ['task-1', 'task-2'],
-		},
-	},
+	columns: {},
 
-	columnsOrder: ['column-1', 'column-2', 'column-3'],
+	columnsOrder: [],
 }
 
 export const kanbanSlice = createSlice({
