@@ -55,6 +55,9 @@ export const kanbanSlice = createSlice({
 		editTaskTitle(state, action) {
 			state.tasks[action.payload.taskId].content = action.payload.newContent
 		},
+		setKanban(state, action) {
+			return (state = { ...state, ...action.payload })
+		},
 	},
 })
 
@@ -65,5 +68,6 @@ export const {
 	removeTask,
 	editColumnTitle,
 	editTaskTitle,
+	setKanban,
 } = kanbanSlice.actions
 export default kanbanSlice.reducer

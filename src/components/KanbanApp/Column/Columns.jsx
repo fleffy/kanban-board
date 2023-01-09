@@ -6,6 +6,7 @@ import {
 	editColumnTitle,
 } from '../../../store/kanbanSlice'
 import { Tasks } from './Tasks'
+import { Droppable } from '@hello-pangea/dnd'
 
 import { BiEdit } from 'react-icons/bi'
 
@@ -68,17 +69,26 @@ export const Columns = ({ column, tasks }) => {
 				)}
 				<button
 					onClick={() => deleteColumn(column.id)}
-					className='bg-indigo-400 dark:bg-indigo-700 py-2 px-4 rounded-lg  dark:opacity-40 dark:hover:opacity-100 transition'
+					className='bg-indigo-400 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-40 hover:opacity-100  dark:opacity-40 dark:hover:opacity-100 transition'
 				>
 					X
 				</button>
 			</div>
 
-			<div className='min-h-[110px] transition-all'>
-				{tasks.map((task, index) => (
-					<Tasks key={task.id} column={column} task={task} index={index} />
-				))}
-			</div>
+			<Droppable droppableId={column.id}>
+				{(provided) => (
+					<div
+						{...provided.droppableProps}
+						ref={provided.innerRef}
+						className='min-h-[110px] transition-all'
+					>
+						{tasks.map((task, index) => (
+							<Tasks key={task.id} column={column} task={task} index={index} />
+						))}
+						{provided.placeholder}
+					</div>
+				)}
+			</Droppable>
 			<button
 				onClick={() => addNewTask(column.id, 'Task Text')}
 				className='bg-indigo-400 dark:bg-indigo-700 rounded-lg p-2 opacity-50 hover:opacity-100 transition-all'
