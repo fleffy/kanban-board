@@ -8,31 +8,25 @@ import {
 import { Tasks } from './Tasks'
 
 import { BiEdit } from 'react-icons/bi'
-import { v4 as uuidv4 } from 'uuid'
 
-export const Columns = ({ kanban, index }) => {
+export const Columns = ({ column, tasks }) => {
 	const dispatch = useDispatch()
 
 	const [titleEditing, setTitleEditing] = useState(false)
 
-	const [editedColumnTitle, setEditedColumnTitle] = useState(kanban.title)
+	const [editedColumnTitle, setEditedColumnTitle] = useState(column.title)
 
 	const deleteColumn = (id) => {
 		dispatch(removeColumn(id))
 	}
 
-	const addNewTask = (id, newTaskText) => {
-		const newTask = {
-			taskText: newTaskText,
-			taskTime: new Date().toLocaleString(),
-			taskID: uuidv4(),
-		}
-		dispatch(addTask({ id, newTask }))
+	const addNewTask = (columnId, content) => {
+		dispatch(addTask({ columnId, content }))
 	}
 
-	const confirmNewColumnTitle = (id, newTitle) => {
+	const confirmNewColumnTitle = (columnId, newTitle) => {
 		if (newTitle.length > 0) {
-			dispatch(editColumnTitle({ id, newTitle }))
+			dispatch(editColumnTitle({ columnId, newTitle }))
 		}
 	}
 
@@ -48,14 +42,14 @@ export const Columns = ({ kanban, index }) => {
 							autoFocus
 							onKeyDown={(e) => {
 								if (e.key === 'Enter') {
-									confirmNewColumnTitle(kanban.id, editedColumnTitle),
+									confirmNewColumnTitle(column.id, editedColumnTitle),
 										setTitleEditing(false)
 								}
 							}}
 						></input>
 						<button
 							onClick={() => {
-								confirmNewColumnTitle(kanban.id, editedColumnTitle),
+								confirmNewColumnTitle(column.id, editedColumnTitle),
 									setTitleEditing(false)
 							}}
 							className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
@@ -68,12 +62,12 @@ export const Columns = ({ kanban, index }) => {
 						onClick={() => setTitleEditing(true)}
 						className='flex items-center hover:opacity-80 transition-all overflow-hidden max-w-[230px] '
 					>
-						<h3 className='font-semibold text-xl text-start'>{kanban.title}</h3>
+						<h3 className='font-semibold text-xl text-start'>{column.title}</h3>
 						<BiEdit className='ml-2 mt-1 w-[20px] h-[20px]' />
 					</button>
 				)}
 				<button
-					onClick={() => deleteColumn(kanban.id)}
+					onClick={() => deleteColumn(column.id)}
 					className='bg-indigo-400 dark:bg-indigo-700 py-2 px-4 rounded-lg  dark:opacity-40 dark:hover:opacity-100 transition'
 				>
 					X
@@ -81,12 +75,12 @@ export const Columns = ({ kanban, index }) => {
 			</div>
 
 			<div className='min-h-[110px] transition-all'>
-				{kanban.tasks.map((task, index) => (
-					<Tasks key={task.taskID} kanban={kanban} task={task} index={index} />
+				{tasks.map((task, index) => (
+					<Tasks key={task.id} column={column} task={task} index={index} />
 				))}
 			</div>
 			<button
-				onClick={() => addNewTask(kanban.id, 'Task Text')}
+				onClick={() => addNewTask(column.id, 'Task Text')}
 				className='bg-indigo-400 dark:bg-indigo-700 rounded-lg p-2 opacity-50 hover:opacity-100 transition-all'
 			>
 				Add

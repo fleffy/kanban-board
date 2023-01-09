@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux'
 import { BiTime } from 'react-icons/bi'
 import { removeTask, editTaskTitle } from '../../../store/kanbanSlice'
 
-export const Tasks = ({ kanban, task, index }) => {
+export const Tasks = ({ column, task }) => {
 	const dispatch = useDispatch()
 
 	const [taskEditing, setTaskEditing] = useState(false)
-	const [editedTaskText, setEditedTaskText] = useState(task.taskText)
+	const [editedTaskText, setEditedTaskText] = useState(task.content)
 
-	const deleteTask = (kanbanID, taskID) => {
-		dispatch(removeTask({ kanbanID, taskID }))
+	const deleteTask = (columnId, taskId) => {
+		dispatch(removeTask({ columnId, taskId }))
 	}
 
-	const confirmEditTask = (kanbanID, taskID, editedTaskText) => {
-		if (editedTaskText.length > 0) {
-			dispatch(editTaskTitle({ kanbanID, taskID, editedTaskText }))
+	const confirmEditTask = (taskId, newContent) => {
+		if (newContent.length > 0) {
+			dispatch(editTaskTitle({ taskId, newContent }))
 		}
 	}
 
@@ -33,14 +33,14 @@ export const Tasks = ({ kanban, task, index }) => {
 									autoFocus
 									onKeyDown={(e) => {
 										if (e.key === 'Enter') {
-											confirmEditTask(kanban.id, task.taskID, editedTaskText)
+											confirmEditTask(task.id, editedTaskText)
 											setTaskEditing(false)
 										}
 									}}
 								></input>
 								<button
 									onClick={() => {
-										confirmEditTask(kanban.id, task.taskID, editedTaskText)
+										confirmEditTask(task.id, editedTaskText)
 										setTaskEditing(false)
 									}}
 									className='rounded-lg bg-indigo-300 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
@@ -53,12 +53,12 @@ export const Tasks = ({ kanban, task, index }) => {
 								onClick={() => setTaskEditing(true)}
 								className='font-bold text-lg overflow-hidden max-w-[230px]  text-start'
 							>
-								{task.taskText}
+								{task.content}
 							</button>
 						)}
 					</div>
 					<button
-						onClick={() => deleteTask(kanban.id, task.taskID)}
+						onClick={() => deleteTask(column.id, task.id)}
 						className='px-2 rounded-lg'
 					>
 						X
@@ -67,7 +67,7 @@ export const Tasks = ({ kanban, task, index }) => {
 				<div className='text-sm'>
 					<div className='flex items-center gap-1'>
 						<BiTime />
-						{task.taskTime}
+						{task.time}
 					</div>
 				</div>
 			</div>
