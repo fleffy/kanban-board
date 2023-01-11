@@ -12,7 +12,7 @@ export const AddColumn = () => {
 			onClick={() => createNewColumn('new column')}
 			className='text-white p-2 px-5 rounded-lg font-semibold bg-indigo-500 dark:bg-indigo-700'
 		>
-			+ column
+			Add column
 		</button>
 	)
 }

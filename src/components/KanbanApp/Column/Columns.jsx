@@ -38,7 +38,7 @@ export const Columns = ({ column, tasks, index }) => {
 					{...provided.dragHandleProps}
 					{...provided.draggableProps}
 					ref={provided.innerRef}
-					className='mr-5 flex flex-col gap-5 text-white bg-indigo-300 dark:bg-[#202123] rounded-lg min-w-[360px] p-6'
+					className='mr-5 flex flex-col gap-5 text-white bg-indigo-400 dark:bg-[#202123] rounded-lg min-w-[360px] p-6'
 				>
 					<div className='rounded-lg p-2 flex items-center justify-between'>
 						{titleEditing ? (
@@ -46,7 +46,7 @@ export const Columns = ({ column, tasks, index }) => {
 								<input
 									value={editedColumnTitle}
 									onChange={(e) => setEditedColumnTitle(e.target.value)}
-									className='rounded-lg text-black dark:bg-[#2a2c2d] dark:text-white py-2 px-2 w-[150px] font-semibold mr-3'
+									className='rounded-lg text-black dark:bg-[#2a2c2d] dark:text-white py-2 px-2 w-[150px] font-semibold mr-4'
 									autoFocus
 									onKeyDown={(e) => {
 										if (e.key === 'Enter') {
@@ -60,7 +60,7 @@ export const Columns = ({ column, tasks, index }) => {
 										confirmNewColumnTitle(column.id, editedColumnTitle),
 											setTitleEditing(false)
 									}}
-									className='rounded-lg bg-indigo-400 dark:bg-indigo-700 font-semibold p-2 dark:opacity-40 dark:hover:opacity-100 transition-all'
+									className='rounded-lg bg-indigo-500 dark:bg-indigo-700 font-semibold p-2 opacity-60 hover:opacity-100 transition-all'
 								>
 									Confirm
 								</button>
@@ -78,7 +78,7 @@ export const Columns = ({ column, tasks, index }) => {
 						)}
 						<button
 							onClick={() => deleteColumn(column.id)}
-							className='bg-indigo-400 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-40 hover:opacity-100  dark:opacity-40 dark:hover:opacity-100 transition'
+							className='bg-indigo-500 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
 						>
 							X
 						</button>
@@ -105,7 +105,7 @@ export const Columns = ({ column, tasks, index }) => {
 					</Droppable>
 					<button
 						onClick={() => addNewTask(column.id, 'Task Text')}
-						className='bg-indigo-400 dark:bg-indigo-700 rounded-lg p-2 opacity-50 hover:opacity-100 transition-all'
+						className='bg-indigo-500 dark:bg-indigo-700 rounded-lg p-2 opacity-60 hover:opacity-100 transition-all font-semibold'
 					>
 						Add
 					</button>

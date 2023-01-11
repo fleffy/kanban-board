@@ -5,8 +5,7 @@ import { setKanban } from '../../store/kanbanSlice'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Droppable } from '@hello-pangea/dnd'
-import { DropToArchive } from './Archive/DropToArchive'
-import { ArchiveButton } from './Archive/ArchiveButton'
+import { Archive } from './Archive/Archive'
 
 export const Kanban = () => {
 	const kanbanData = useSelector((state) => state.kanbanApp)
@@ -100,12 +99,9 @@ export const Kanban = () => {
 
 	return (
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>
-			<div className='flex gap-10 justify-between mb-[60px]'>
+			<div className='flex gap-4 justify-between mb-[60px]'>
 				<AddColumn />
-				<div className='flex gap-5'>
-					<ArchiveButton />
-					<DropToArchive />
-				</div>
+				<Archive />
 			</div>
 			<DragDropContext onDragEnd={onDragEnd}>
 				<Droppable

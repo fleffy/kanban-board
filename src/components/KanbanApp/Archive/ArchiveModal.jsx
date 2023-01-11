@@ -1,3 +1,3 @@
 export const ArchiveModal = () => {
-	return <div>ArchiveModal</div>
+	return <div>prikol</div>
 }
