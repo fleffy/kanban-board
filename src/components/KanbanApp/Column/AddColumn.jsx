@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
 import { addColumn } from '../../../store/kanbanSlice'
-import { v4 as uuidv4 } from 'uuid'
 
 export const AddColumn = () => {
 	const dispatch = useDispatch()
