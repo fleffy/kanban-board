@@ -100,7 +100,7 @@ export const Kanban = () => {
 
 	return (
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>
-			<div className='flex gap-10 justify-between'>
+			<div className='flex gap-10 justify-between mb-[60px]'>
 				<AddColumn />
 				<div className='flex gap-5'>
 					<ArchiveButton />
@@ -133,6 +133,7 @@ export const Kanban = () => {
 									/>
 								)
 							})}
+							{provided.placeholder}
 						</div>
 					)}
 				</Droppable>
