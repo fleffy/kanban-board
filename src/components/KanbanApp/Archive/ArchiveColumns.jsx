@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { removeColumn, editColumnTitle } from '../../../store/kanbanSlice'
-import { Tasks } from '../Column/Tasks'
+import { ArchiveTasks } from './ArchiveTasks'
 
 import { BiEdit } from 'react-icons/bi'
 
@@ -67,8 +67,8 @@ export const ArchiveColumns = ({ column, tasks }) => {
 			</div>
 
 			<div className='min-h-[110px] transition-all'>
-				{tasks.map((task, index) => (
-					<Tasks key={task.id} column={column} task={task} index={index} />
+				{tasks.map((task) => (
+					<ArchiveTasks key={task.id} column={column} task={task} />
 				))}
 			</div>
 		</div>
