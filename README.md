@@ -3,8 +3,6 @@
 # kanban-board
 ## React, JS, Redux, TailwindCSS
 
-Todo:
-
+## Todo:
 Possibility of archiving
-
 Migrating from JavaScript to TypeScript
