@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { ArchiveColumns } from './ArchiveColumns'
 
 export const ArchiveModal = ({ setOpenModal }) => {
 	const kanbanData = useSelector((state) => state.kanbanApp)
@@ -18,6 +19,17 @@ export const ArchiveModal = ({ setOpenModal }) => {
 					>
 						X
 					</button>
+				</div>
+				<div className='flex overflow-auto pb-3 items-start'>
+					{kanbanData.columnsOrder.map((columnId) => {
+						const column = kanbanData.columns[columnId]
+						const tasks = column.tasksOrder.map(
+							(taskId) => kanbanData.tasks[taskId]
+						)
+						return (
+							<ArchiveColumns key={column.id} tasks={tasks} column={column} />
+						)
+					})}
 				</div>
 			</div>
 		</div>
