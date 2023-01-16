@@ -4,5 +4,5 @@
 ## React, JS, Redux, TailwindCSS
 
 ## Todo:
-Possibility of archiving
-Migrating from JavaScript to TypeScript
+### Possibility of archiving
+### Migrating from JavaScript to TypeScript
