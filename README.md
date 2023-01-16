@@ -3,7 +3,7 @@
 # kanban-board
 ## React, JS, Redux, TailwindCSS
 
-##Todo:
+Todo:
 
 Possibility of archiving
 
