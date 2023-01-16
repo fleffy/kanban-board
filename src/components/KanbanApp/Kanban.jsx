@@ -18,6 +18,12 @@ export const Kanban = () => {
 	const onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result
 
+		// archive logic
+
+		if (destination.draggableId === 'dropToArchiveArea' && type === 'column') {
+		}
+
+		//
 		if (!destination) {
 			return
 		}
@@ -99,11 +105,11 @@ export const Kanban = () => {
 
 	return (
 		<div className='p-6 px-[1.5rem] xl:px-[7.5rem] mt-[50px]'>
-			<div className='flex gap-4 justify-between mb-[60px]'>
-				<AddColumn />
-				<Archive />
-			</div>
 			<DragDropContext onDragEnd={onDragEnd}>
+				<div className='flex gap-4 justify-between mb-[60px]'>
+					<AddColumn />
+					<Archive />
+				</div>
 				<Droppable
 					droppableId='ColumnsDndArea'
 					direction='horizontal'

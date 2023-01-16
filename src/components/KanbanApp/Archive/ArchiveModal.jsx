@@ -1,4 +1,9 @@
+import { useSelector } from 'react-redux'
+
 export const ArchiveModal = ({ setOpenModal }) => {
+	const kanbanData = useSelector((state) => state.kanbanApp)
+	console.log(kanbanData)
+
 	return (
 		<div className='fixed z-50 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'>
 			<div className='w-[1250px] h-[750px] bg-white rounded-lg m-5 p-10 dark:bg-[#202123]'>

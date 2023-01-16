@@ -5,6 +5,7 @@ const initialState = {
 	tasks: {},
 	columns: {},
 	columnsOrder: [],
+	archive: [],
 }
 
 export const kanbanSlice = createSlice({
