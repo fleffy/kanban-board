@@ -20,7 +20,8 @@ export const Kanban = () => {
 
 		// archive logic
 
-		if (destination.draggableId === 'dropToArchiveArea' && type === 'column') {
+		if (destination.droppableId === 'dropToArchiveArea' && type === 'column') {
+			console.log('archive logic')
 		}
 
 		//
