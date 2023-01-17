@@ -8,7 +8,8 @@ import {
 import { Tasks } from './Tasks'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
 
-import { BiEdit } from 'react-icons/bi'
+import { BiEdit, BiX } from 'react-icons/bi'
+import { MdCheck } from 'react-icons/md'
 
 export const Columns = ({ column, tasks, index }) => {
 	const dispatch = useDispatch()
@@ -40,10 +41,11 @@ export const Columns = ({ column, tasks, index }) => {
 					ref={provided.innerRef}
 					className='mr-5 flex flex-col gap-5 text-white bg-indigo-400 dark:bg-[#202123] rounded-lg min-w-[360px] p-6'
 				>
-					<div className='rounded-lg p-2 flex items-center justify-between'>
+					<div className='rounded-lg p-2 flex items-center justify-between '>
 						{titleEditing ? (
-							<div>
+							<div className='flex items-center'>
 								<input
+									maxLength='18'
 									value={editedColumnTitle}
 									onChange={(e) => setEditedColumnTitle(e.target.value)}
 									className='rounded-lg text-black dark:bg-[#2a2c2d] dark:text-white py-2 px-2 w-[150px] font-semibold mr-4'
@@ -62,7 +64,7 @@ export const Columns = ({ column, tasks, index }) => {
 									}}
 									className='rounded-lg bg-indigo-500 dark:bg-indigo-700 font-semibold p-2 opacity-60 hover:opacity-100 transition-all'
 								>
-									Confirm
+									<MdCheck className='w-[22px] h-[22px]' />
 								</button>
 							</div>
 						) : (
@@ -78,9 +80,9 @@ export const Columns = ({ column, tasks, index }) => {
 						)}
 						<button
 							onClick={() => deleteColumn(column.id)}
-							className='bg-indigo-500 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
+							className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
 						>
-							X
+							<BiX className='w-[22px] h-[22px]' />
 						</button>
 					</div>
 
@@ -105,6 +107,7 @@ export const Columns = ({ column, tasks, index }) => {
 					</Droppable>
 					<button
 						onClick={() => addNewTask(column.id, 'Task Text')}
+						title='Add new task'
 						className='bg-indigo-500 dark:bg-indigo-700 rounded-lg p-2 opacity-60 hover:opacity-100 transition-all font-semibold'
 					>
 						Add

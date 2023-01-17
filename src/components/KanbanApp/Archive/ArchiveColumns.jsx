@@ -6,7 +6,8 @@ import {
 } from '../../../store/kanbanSlice'
 import { ArchiveTasks } from './ArchiveTasks'
 
-import { BiEdit } from 'react-icons/bi'
+import { BiEdit, BiX, BiUndo } from 'react-icons/bi'
+import { MdCheck } from 'react-icons/md'
 
 export const ArchiveColumns = ({ column, tasks }) => {
 	const dispatch = useDispatch()
@@ -29,8 +30,9 @@ export const ArchiveColumns = ({ column, tasks }) => {
 		<div className='mr-5 flex flex-col gap-5 text-white bg-indigo-400 dark:bg-[#202123] rounded-lg min-w-[360px] p-6'>
 			<div className='rounded-lg p-2 flex items-center justify-between'>
 				{titleEditing ? (
-					<div>
+					<div className='flex items-center'>
 						<input
+							maxLength='18'
 							value={editedColumnTitle}
 							onChange={(e) => setEditedColumnTitle(e.target.value)}
 							className='rounded-lg text-black dark:bg-[#2a2c2d] dark:text-white py-2 px-2 w-[150px] font-semibold mr-4'
@@ -47,9 +49,11 @@ export const ArchiveColumns = ({ column, tasks }) => {
 								confirmNewColumnTitle(column.id, editedColumnTitle),
 									setTitleEditing(false)
 							}}
-							className='rounded-lg bg-indigo-500 dark:bg-indigo-700 font-semibold p-2 opacity-60 hover:opacity-100 transition-all'
+							className='bg-indigo-500 dark:bg-indigo-700 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold mr-3'
 						>
-							Confirm
+							<div className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'>
+								<MdCheck className='w-[22px] h-[22px]' />
+							</div>
 						</button>
 					</div>
 				) : (
@@ -58,15 +62,20 @@ export const ArchiveColumns = ({ column, tasks }) => {
 						className='flex items-center hover:opacity-80 transition-all overflow-hidden max-w-[230px] '
 					>
 						<h3 className='font-semibold text-xl text-start'>{column.title}</h3>
-						<BiEdit className='ml-2 mt-1 w-[20px] h-[20px]' />
+						<BiEdit className='ml-2 w-[20px] h-[20px]' />
 					</button>
 				)}
-				<button
-					onClick={() => deleteArchiveColumn(column.id)}
-					className='bg-indigo-500 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
-				>
-					X
-				</button>
+				<div className='flex gap-3'>
+					<button className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'>
+						<BiUndo className='w-[22px] h-[22px]' />
+					</button>
+					<button
+						onClick={() => deleteArchiveColumn(column.id)}
+						className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
+					>
+						<BiX className='w-[22px] h-[22px]' />
+					</button>
+				</div>
 			</div>
 
 			<div className='min-h-[110px] transition-all'>
