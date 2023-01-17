@@ -5,8 +5,14 @@ export const ArchiveModal = ({ setOpenModal }) => {
 	const kanbanData = useSelector((state) => state.kanbanApp)
 
 	return (
-		<div className='fixed z-50 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'>
-			<div className='w-[1250px] h-[750px] bg-white rounded-lg m-5 p-10 dark:bg-[#242526]'>
+		<div
+			onClick={() => setOpenModal(false)}
+			className='fixed z-50 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'
+		>
+			<div
+				onClick={(e) => e.stopPropagation()}
+				className=' w-[1250px] h-[750px] bg-white rounded-lg m-5 p-10 dark:bg-[#242526]'
+			>
 				<div className='flex justify-between'>
 					<div className='flex items-center text-2xl font-bold text-indigo-500 dark:text-white'>
 						Kanban Archive

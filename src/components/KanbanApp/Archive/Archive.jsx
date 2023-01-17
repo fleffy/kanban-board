@@ -1,9 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { DropToArchive } from './DropToArchive'
 import { ArchiveModal } from './ArchiveModal'
 
 export const Archive = () => {
 	const [openModal, setOpenModal] = useState(false)
+
+	useEffect(() => {
+		const closeModal = (e) => {
+			if (e.keyCode === 27) {
+				setOpenModal(false)
+			}
+		}
+		window.addEventListener('keydown', closeModal)
+		return () => window.removeEventListener('keydown', closeModal)
+	}, [])
 
 	return (
 		<div>
