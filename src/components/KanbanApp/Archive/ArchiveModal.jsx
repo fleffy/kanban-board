@@ -8,9 +8,8 @@ export const ArchiveModal = ({ setOpenModal }) => {
 		<div className='fixed z-50 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'>
 			<div className='w-[1250px] h-[750px] bg-white rounded-lg m-5 p-10 dark:bg-[#242526]'>
 				<div className='flex justify-between'>
-					<div className='flex items-center text-2xl font-semibold'>
-						<div className='text-2xl'></div>
-						<div>Kanban Archive</div>
+					<div className='flex items-center text-2xl font-bold text-indigo-500 dark:text-white'>
+						Kanban Archive
 					</div>
 					<button
 						className='bg-indigo-500 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold text-white'
@@ -20,17 +19,17 @@ export const ArchiveModal = ({ setOpenModal }) => {
 					</button>
 				</div>
 				<div className='flex overflow-auto pb-3 items-start pt-10'>
-					{console.log(kanbanData.archive)}
-					{/* {kanbanData.archive.map((columnId) => {
-						// console.log(kanbanData)
-						// const column = kanbanData.columns[columnId]
-						// const tasks = column.tasksOrder.map(
-						// 	(taskId) => kanbanData.tasks[taskId]
-						// )
-						// return (
-						// 	<ArchiveColumns key={column.id} tasks={tasks} column={column} />
-						// )
-					})} */}
+					{kanbanData.archive.map((columnId) => {
+						const column = kanbanData.columns[columnId]
+
+						const tasks = column.tasksOrder.map(
+							(taskId) => kanbanData.tasks[taskId]
+						)
+
+						return (
+							<ArchiveColumns key={column.id} tasks={tasks} column={column} />
+						)
+					})}
 				</div>
 			</div>
 		</div>

@@ -30,6 +30,13 @@ export const kanbanSlice = createSlice({
 
 			delete state.columns[action.payload]
 		},
+		removeArchiveColumn(state, action) {
+			const indexOfArchiveColumn = state.archive.indexOf(action.payload)
+
+			state.archive.splice(indexOfArchiveColumn, 1)
+
+			delete state.columns[action.payload]
+		},
 		addTask(state, action) {
 			const id = uuidv4()
 
@@ -65,6 +72,7 @@ export const kanbanSlice = createSlice({
 export const {
 	addColumn,
 	removeColumn,
+	removeArchiveColumn,
 	addTask,
 	removeTask,
 	editColumnTitle,

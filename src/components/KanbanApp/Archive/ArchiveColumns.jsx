@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { removeColumn, editColumnTitle } from '../../../store/kanbanSlice'
+import {
+	removeArchiveColumn,
+	editColumnTitle,
+} from '../../../store/kanbanSlice'
 import { ArchiveTasks } from './ArchiveTasks'
 
 import { BiEdit } from 'react-icons/bi'
@@ -12,8 +15,8 @@ export const ArchiveColumns = ({ column, tasks }) => {
 
 	const [editedColumnTitle, setEditedColumnTitle] = useState(column.title)
 
-	const deleteColumn = (id) => {
-		dispatch(removeColumn(id))
+	const deleteArchiveColumn = (id) => {
+		dispatch(removeArchiveColumn(id))
 	}
 
 	const confirmNewColumnTitle = (columnId, newTitle) => {
@@ -59,7 +62,7 @@ export const ArchiveColumns = ({ column, tasks }) => {
 					</button>
 				)}
 				<button
-					onClick={() => deleteColumn(column.id)}
+					onClick={() => deleteArchiveColumn(column.id)}
 					className='bg-indigo-500 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
 				>
 					X
