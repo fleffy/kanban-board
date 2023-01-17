@@ -39,7 +39,7 @@ export const Columns = ({ column, tasks, index }) => {
 					{...provided.dragHandleProps}
 					{...provided.draggableProps}
 					ref={provided.innerRef}
-					className='mr-5 flex flex-col gap-5 text-white bg-indigo-400 dark:bg-[#202123] rounded-lg min-w-[360px] p-6'
+					className='mr-5 flex flex-col gap-5 text-white bg-indigo-400 dark:bg-[#202123] rounded-lg min-w-[360px] p-6 cursor-grab'
 				>
 					<div className='rounded-lg p-2 flex items-center justify-between '>
 						{titleEditing ? (
