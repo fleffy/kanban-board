@@ -6,6 +6,7 @@ export const DarkModeToggler = () => {
 	return (
 		<div>
 			<button
+				title='Change theme'
 				onClick={setIsDarkMode}
 				className='relative w-[70px] h-[35px] bg-indigo-500 rounded-full flex items-center dark:bg-indigo-700'
 			>

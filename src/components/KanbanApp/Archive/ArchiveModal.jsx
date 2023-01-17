@@ -18,6 +18,7 @@ export const ArchiveModal = ({ setOpenModal }) => {
 						Kanban Archive
 					</div>
 					<button
+						title='Close archive'
 						className='bg-indigo-500 dark:bg-indigo-700 py-2 px-4 rounded-lg opacity-60 hover:opacity-100  dark:opacity-60 dark:hover:opacity-100 transition font-semibold text-white'
 						onClick={() => setOpenModal(false)}
 					>

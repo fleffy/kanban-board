@@ -43,6 +43,7 @@ export const ArchiveTasks = ({ column, task }) => {
 									}}
 								></input>
 								<button
+									title='Confirm editing'
 									onClick={() => {
 										confirmEditTask(task.id, editedTaskText)
 										setTaskEditing(false)
@@ -54,6 +55,7 @@ export const ArchiveTasks = ({ column, task }) => {
 							</div>
 						) : (
 							<button
+								title='Edit task'
 								onClick={() => setTaskEditing(true)}
 								className='font-bold text-lg overflow-hidden max-w-[230px]  text-start'
 							>

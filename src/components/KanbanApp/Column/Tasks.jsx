@@ -51,6 +51,7 @@ export const Tasks = ({ column, task, index }) => {
 											}}
 										></input>
 										<button
+											title='Confirm editing'
 											onClick={() => {
 												confirmEditTask(task.id, editedTaskText)
 												setTaskEditing(false)
@@ -62,6 +63,7 @@ export const Tasks = ({ column, task, index }) => {
 									</div>
 								) : (
 									<button
+										title='Edit task'
 										onClick={() => setTaskEditing(true)}
 										className='font-bold text-lg overflow-hidden max-w-[230px]  text-start'
 									>
@@ -70,6 +72,7 @@ export const Tasks = ({ column, task, index }) => {
 								)}
 							</div>
 							<button
+								title='Delete task'
 								onClick={() => deleteTask(column.id, task.id)}
 								className='px-2 rounded-lg'
 							>

@@ -45,6 +45,7 @@ export const ArchiveColumns = ({ column, tasks }) => {
 							}}
 						></input>
 						<button
+							title='Confirm editing'
 							onClick={() => {
 								confirmNewColumnTitle(column.id, editedColumnTitle),
 									setTitleEditing(false)
@@ -58,6 +59,7 @@ export const ArchiveColumns = ({ column, tasks }) => {
 					</div>
 				) : (
 					<button
+						title='Edit column title'
 						onClick={() => setTitleEditing(true)}
 						className='flex items-center hover:opacity-80 transition-all overflow-hidden max-w-[230px] '
 					>
@@ -66,10 +68,14 @@ export const ArchiveColumns = ({ column, tasks }) => {
 					</button>
 				)}
 				<div className='flex gap-3'>
-					<button className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'>
+					<button
+						title='Get from the archive'
+						className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
+					>
 						<BiUndo className='w-[22px] h-[22px]' />
 					</button>
 					<button
+						title='Delete from archive'
 						onClick={() => deleteArchiveColumn(column.id)}
 						className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
 					>
