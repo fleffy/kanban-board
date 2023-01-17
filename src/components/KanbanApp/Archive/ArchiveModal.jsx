@@ -3,7 +3,6 @@ import { ArchiveColumns } from './ArchiveColumns'
 
 export const ArchiveModal = ({ setOpenModal }) => {
 	const kanbanData = useSelector((state) => state.kanbanApp)
-	console.log(kanbanData)
 
 	return (
 		<div className='fixed z-50 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center'>
@@ -21,15 +20,17 @@ export const ArchiveModal = ({ setOpenModal }) => {
 					</button>
 				</div>
 				<div className='flex overflow-auto pb-3 items-start pt-10'>
-					{kanbanData.columnsOrder.map((columnId) => {
-						const column = kanbanData.columns[columnId]
-						const tasks = column.tasksOrder.map(
-							(taskId) => kanbanData.tasks[taskId]
-						)
-						return (
-							<ArchiveColumns key={column.id} tasks={tasks} column={column} />
-						)
-					})}
+					{console.log(kanbanData.archive)}
+					{/* {kanbanData.archive.map((columnId) => {
+						// console.log(kanbanData)
+						// const column = kanbanData.columns[columnId]
+						// const tasks = column.tasksOrder.map(
+						// 	(taskId) => kanbanData.tasks[taskId]
+						// )
+						// return (
+						// 	<ArchiveColumns key={column.id} tasks={tasks} column={column} />
+						// )
+					})} */}
 				</div>
 			</div>
 		</div>

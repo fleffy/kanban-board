@@ -5,10 +5,6 @@ import { ArchiveModal } from './ArchiveModal'
 export const Archive = () => {
 	const [openModal, setOpenModal] = useState(false)
 
-	const onDragEnd = () => {
-		// todo
-	}
-
 	return (
 		<div>
 			<div className='flex gap-5 transition-all'>

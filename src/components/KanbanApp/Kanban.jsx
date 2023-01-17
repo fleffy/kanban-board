@@ -21,7 +21,19 @@ export const Kanban = () => {
 		// archive logic
 
 		if (destination.droppableId === 'dropToArchiveArea' && type === 'column') {
-			console.log('archive logic')
+			const newColumnOrder = Array.from(kanbanData.columnsOrder)
+			const newArchiveList = Array.from(kanbanData.archive)
+			newColumnOrder.splice(source.index, 1)
+			newArchiveList.splice(destination.index, 0, draggableId)
+
+			const newState = {
+				...kanbanData,
+				columnsOrder: newColumnOrder,
+				archive: newArchiveList,
+			}
+
+			setInitialData(newState)
+			return
 		}
 
 		//
