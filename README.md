@@ -6,4 +6,5 @@ You can try demo version [here 👾](https://kanban-board-fleffy.vercel.app/)
 ## React, JS, Redux, TailwindCSS
 
 ## Todo:
+### Fix issues with mobile version
 ### Migrating from JavaScript to TypeScript
