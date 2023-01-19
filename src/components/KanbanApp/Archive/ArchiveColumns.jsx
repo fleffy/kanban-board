@@ -108,7 +108,7 @@ export const ArchiveColumns = ({ column, tasks }) => {
 				</div>
 			</div>
 
-			<div className='min-h-[110px] transition-all'>
+			<div className='min-h-[110px] max-h-[360px] overflow-auto transition-all pr-2'>
 				{tasks.map((task) => (
 					<ArchiveTasks key={task.id} column={column} task={task} />
 				))}
