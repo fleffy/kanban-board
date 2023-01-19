@@ -1,6 +1,6 @@
 # ⚠️ Not final version / under development ⚠️
 
-You can demo version [here 👾](https://kanban-board-fleffy.vercel.app/)
+You can try demo version [here 👾](https://kanban-board-fleffy.vercel.app/)
 
 # kanban-board
 ## React, JS, Redux, TailwindCSS
