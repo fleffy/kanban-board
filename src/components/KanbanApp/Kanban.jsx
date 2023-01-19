@@ -18,8 +18,6 @@ export const Kanban = () => {
 	const onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result
 
-		// archive logic
-
 		if (destination.droppableId === 'dropToArchiveArea' && type === 'column') {
 			const newColumnOrder = Array.from(kanbanData.columnsOrder)
 			const newArchiveList = Array.from(kanbanData.archive)
@@ -36,7 +34,6 @@ export const Kanban = () => {
 			return
 		}
 
-		//
 		if (!destination) {
 			return
 		}

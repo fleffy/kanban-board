@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
 	removeArchiveColumn,
 	editColumnTitle,
+	setKanban,
 } from '../../../store/kanbanSlice'
 import { ArchiveTasks } from './ArchiveTasks'
 
@@ -10,7 +11,12 @@ import { BiEdit, BiX, BiUndo } from 'react-icons/bi'
 import { MdCheck } from 'react-icons/md'
 
 export const ArchiveColumns = ({ column, tasks }) => {
+	const kanbanData = useSelector((state) => state.kanbanApp)
 	const dispatch = useDispatch()
+
+	const setInitialData = (state) => {
+		dispatch(setKanban(state))
+	}
 
 	const [titleEditing, setTitleEditing] = useState(false)
 
@@ -24,6 +30,23 @@ export const ArchiveColumns = ({ column, tasks }) => {
 		if (newTitle.length > 0) {
 			dispatch(editColumnTitle({ columnId, newTitle }))
 		}
+	}
+
+	const returnColumn = (id) => {
+		const newColumnOrder = Array.from(kanbanData.columnsOrder)
+		const newArchiveList = Array.from(kanbanData.archive)
+		const indexOfArchiveColumn = kanbanData.archive.indexOf(id)
+
+		newArchiveList.splice(indexOfArchiveColumn, 1)
+		newColumnOrder.splice(0, 0, id)
+
+		const newState = {
+			...kanbanData,
+			columnsOrder: newColumnOrder,
+			archive: newArchiveList,
+		}
+
+		setInitialData(newState)
 	}
 
 	return (
@@ -69,6 +92,7 @@ export const ArchiveColumns = ({ column, tasks }) => {
 				)}
 				<div className='flex gap-3'>
 					<button
+						onClick={() => returnColumn(column.id)}
 						title='Get from the archive'
 						className='bg-indigo-500 dark:bg-indigo-700 p-2 rounded-lg opacity-60 hover:opacity-100 dark:opacity-60 dark:hover:opacity-100 transition font-semibold'
 					>
