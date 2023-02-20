@@ -25,19 +25,26 @@ export const ArchiveModal = ({ setOpenModal }) => {
 						X
 					</button>
 				</div>
-				<div className='flex overflow-auto pb-3 items-start pt-10'>
-					{kanbanData.archive.map((columnId) => {
-						const column = kanbanData.columns[columnId]
+				{kanbanData.archive.length === 0 ? (
+					<div className='flex overflow-auto justify-center min-h-[300px] items-center'>
+						<h2 className='text-2xl font-bold text-indigo-500 dark:text-white'>
+							Your archive is empty :(
+						</h2>
+					</div>
+				) : (
+					<div className='flex overflow-auto pb-3 items-start pt-10 min-h-[300px]'>
+						{kanbanData.archive.map((columnId) => {
+							const column = kanbanData.columns[columnId]
+							const tasks = column.tasksOrder.map(
+								(taskId) => kanbanData.tasks[taskId]
+							)
 
-						const tasks = column.tasksOrder.map(
-							(taskId) => kanbanData.tasks[taskId]
-						)
-
-						return (
-							<ArchiveColumns key={column.id} tasks={tasks} column={column} />
-						)
-					})}
-				</div>
+							return (
+								<ArchiveColumns key={column.id} tasks={tasks} column={column} />
+							)
+						})}
+					</div>
+				)}
 			</div>
 		</div>
 	)
