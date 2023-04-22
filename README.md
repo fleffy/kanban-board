@@ -1,10 +1,9 @@
-You can try it by yourself [here 👾!](https://github.com/fleffy/vuz/releases/)
+# ⚠️ Not final version / under development ⚠️
 
-[Download link](https://github.com/fleffy/vuz/releases/)
+You can try demo version [here 👾](https://kanban-fleffy.vercel.app/)
 
-# Car Parking Manager
-## C#, Microsoft MySQL Server Manager
-
-## How to use?
-### ...
-### ...
+# kanban-board
+## React, JS, Redux, TailwindCSS
+## Todo:
+### Fix issues with mobile version
+### Migrating from JavaScript to TypeScript
